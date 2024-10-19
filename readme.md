@@ -2,7 +2,7 @@
 This project implements the Screenplay design pattern using Python and Selenium for end-to-end testing of web applications.
 
 ---
-
+```
 ## 📁 Project Structure
 screenplay-python-selenium/
 ├── src/
@@ -41,7 +41,7 @@ screenplay-python-selenium/
 ├── .gitignore
 ├── readme.md
 └── requirements.txt
-
+```
 
 ## Overview
 🎭 actors/: Contains actor classes that represent users interacting with the application. Each actor encapsulates specific behaviors and data, allowing for a clear modeling of user interactions.
