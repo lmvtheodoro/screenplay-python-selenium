@@ -15,7 +15,6 @@ class TestLoginScenario:
     def teardown_method(self):
         self.driver.quit()
     
-    @pytest
     def test_valid_login(self):
         valid_user = self.user_actor.get_valid_user()
         self.user_actor.login(valid_user)
