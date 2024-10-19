@@ -7,25 +7,36 @@ This project implements the Screenplay design pattern using Python and Selenium 
 screenplay-python-selenium/
 ├── src/
 │   ├── 🎭 actors/
-│   │   └── UserActor.py
+│   │    └── UserActor.py
 │   │
 │   ├── 🚀 actions/
-│   │   └── Actions.py
+│   │    ├── account/
+│   │    │   ├── LoginActions.py
+│   │    │   └── LogoutActions.py
+│   │    └── invoice/
+│   │        └── InvoiceActions.py
+│   │    
+│   ├── 🖱️ interactions/
+│   │    └── Interactions.py
 │   │
 │   ├── ❓ questions/
-│   │   └── Questions.py
+│   │    ├── account/
+│   │    │   ├── LoginQuestions.py
+│   │    │   └── LogoutQuestions.py
+│   │    └── invoice/
+│   │        └── InvoiceQuestions.py
 │   │
 │   ├── 📜 scenarios/
-│   │   └── LoginScenario.py
+│   │    └── LoginScenario.py
 │   │
 │   ├── 📊 data/
-│   │   ├── users.json
-│   │   └── urls.json
+│   │    ├── users.json
+│   │    └── urls.json
 │   │
 │   └── ⚙️ configs/
-│       ├── WebdriverConfig.py
-│       ├── UserCredentialsConfig.py
-│       └── UrlManagerConfig.py
+│        ├── WebdriverConfig.py
+│        ├── UserCredentialsConfig.py
+│        └── UrlManagerConfig.py
 │
 ├── .gitignore
 ├── readme.md
@@ -33,12 +44,19 @@ screenplay-python-selenium/
 
 
 ## Overview
-- **🎭 actors/**: Contains actor classes that represent users interacting with the application.
-- **🚀 actions/**: Contains actions that actors can perform, such as logging in.
-- **❓ questions/**: Contains questions to retrieve information from the application.
-- **📜 scenarios/**: Contains the scenarios that define the tests to be executed.
-- **📊 data/**: Stores application-related data.
-- **⚙️ configs/**: Contains configuration files for WebDriver setup and other settings.
+🎭 actors/: Contains actor classes that represent users interacting with the application. Each actor encapsulates specific behaviors and data, allowing for a clear modeling of user interactions.
+
+🚀 actions/: Houses the actions that actors can perform, organized by functionality. Each module includes specific functions for carrying out tasks.
+
+🖱️ interactions/: Contains the Interactions, which defines generic methods for interacting with user interface elements, facilitating code reuse across different scenarios.
+
+❓ questions/: Organizes the questions that actors can ask to retrieve information from the application, also categorized by functionality, enabling efficient data retrieval and validations.
+
+📜 scenarios/: Contains scripts that define test scenarios,outlining the sequence of actions that actors should follow to perform specific application tests.
+
+📊 data/: Stores relevant data for testing, allowing for easy modification and management of the data used during tests.
+
+⚙️ configs/: Includes configuration files that manage WebDriver setup, user credentials, and URL management. These files centralize configuration definitions, making it easier to maintain and customize tests.
 
 ---
 

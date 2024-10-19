@@ -1,4 +1,3 @@
-# src/data/UserCredentialsConfig.py
 import json
 import os
 
