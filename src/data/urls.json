@@ -1,0 +1,11 @@
+{
+    "sandbox": {
+        "baseUrl": "https://automation-sandbox-python-mpywqjbdza-uc.a.run.app/"
+    },
+    "dev": {
+        "baseUrl": "https://dev.automation-sandbox-python-mpywqjbdza-uc.a.run.app/"       
+    },
+    "qa": {
+        "baseUrl": "https://qa.automation-sandbox-python-mpywqjbdza-uc.a.run.app/"       
+    }
+}
