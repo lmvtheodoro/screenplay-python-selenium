@@ -81,3 +81,27 @@ screenplay-python-selenium/
   ```bash
   pip install -r requirements.txt
   ```
+
+## Running Tests
+To execute the tests in this project, you can use the following command in your terminal:
+
+```bash
+$env:Run="false"; $env:Browser="edge"; $env:Env="sandbox"; pytest
+```
+
+Command Explanation:
+Run: Set this variable to `` "true" `` for headless mode (running the browser in the background) or `` "false" `` to run the browser in normal mode, which allows you to see the browser window.
+
+Browser: Specify which browser to use for the tests. Accepted values are:
+
+- `` "edge" ``
+- `` "chrome" ``
+- `` "firefox" ``
+
+Env: Determine the environment for the tests. Accepted options are:
+
+- `` "sandbox" ``
+- `` "dev" ``
+- `` "qa" ``
+
+ ❗ **Note**: These are only examples of how to configure the environment. The project being tested does not actually include `"dev"` or `"qa"` environments.
