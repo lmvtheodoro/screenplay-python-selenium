@@ -10,7 +10,7 @@ class User:
     def __repr__(self):
         return f"User(username={self.username}, role={self.role})"
 
-class UserCredentialsConfig:
+class UserConfig:
     def __init__(self):
         self.credentials = self.load_credentials()
 
@@ -19,6 +19,15 @@ class UserCredentialsConfig:
         filepath = 'src/data/users.json'
         if not os.path.exists(filepath):
             raise FileNotFoundError(f"Credentials file not found: {filepath}")
+
+        with open(filepath) as json_file:
+            return json.load(json_file)
+        
+    def load_invoice(self):
+        """Loads user credentials from a JSON file."""
+        filepath = 'src/data/invoice.json'
+        if not os.path.exists(filepath):
+            raise FileNotFoundError(f"Invoice file not found: {filepath}")
 
         with open(filepath) as json_file:
             return json.load(json_file)

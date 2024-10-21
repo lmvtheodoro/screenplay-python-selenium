@@ -11,8 +11,7 @@ screenplay-python-selenium/
 │   │
 │   ├── 🚀 actions/
 │   │    ├── account/
-│   │    │   ├── LoginActions.py
-│   │    │   └── LogoutActions.py
+│   │    │   └── LoginActions.py
 │   │    └── invoice/
 │   │        └── InvoiceActions.py
 │   │    
@@ -21,21 +20,22 @@ screenplay-python-selenium/
 │   │
 │   ├── ❓ questions/
 │   │    ├── account/
-│   │    │   ├── LoginQuestions.py
-│   │    │   └── LogoutQuestions.py
+│   │    │   └── LoginQuestions.py
 │   │    └── invoice/
 │   │        └── InvoiceQuestions.py
 │   │
 │   ├── 📜 scenarios/
-│   │    └── LoginScenario.py
+│   │    ├── LoginScenario.py
+│   │    └── InvoiceScenario.py
 │   │
 │   ├── 📊 data/
 │   │    ├── users.json
+│   │    ├── invoice.json
 │   │    └── urls.json
 │   │
 │   └── ⚙️ configs/
 │        ├── WebdriverConfig.py
-│        ├── UserCredentialsConfig.py
+│        ├── UserConfig.py
 │        └── UrlManagerConfig.py
 │
 ├── .gitignore
