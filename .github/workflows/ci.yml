@@ -9,7 +9,7 @@ on:
       Run:
         description: "Run mode (true for headless, false for normal)"
         required: false
-        default: "false"
+        default: "true"
       Browser:
         description: "Browser to use for testing"
         required: false
@@ -22,14 +22,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    services:
-      selenium:
-        image: ${{ github.event.inputs.Browser == 'firefox' && 'selenium/standalone-firefox' || github.event.inputs.Browser == 'edge' && 'selenium/standalone-edgedriver' || 'selenium/standalone-chrome' }}
-        ports:
-          - 4444:4444
-        options: >-
-          --shm-size 2g
 
     steps:
       - name: Checkout repository
@@ -44,6 +36,26 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Install Browser
+        run: |
+          if [ "${{ github.event.inputs.Browser }}" == "chrome" ]; then
+            sudo apt-get update
+            sudo apt-get install -y google-chrome-stable
+          elif [ "${{ github.event.inputs.Browser }}" == "firefox" ]; then
+            sudo apt-get update
+            sudo apt-get install -y firefox
+          elif [ "${{ github.event.inputs.Browser }}" == "edge" ]; then
+            sudo apt-get update
+            wget https://packages.microsoft.com/keys/microsoft.asc -O microsoft.asc
+            sudo apt-key add microsoft.asc
+            sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main"
+            sudo apt-get update
+            sudo apt-get install -y microsoft-edge-stable
+          else
+            echo "Unsupported browser: ${{ github.event.inputs.Browser }}"
+            exit 1
+          fi
 
       - name: Run tests
         env:
