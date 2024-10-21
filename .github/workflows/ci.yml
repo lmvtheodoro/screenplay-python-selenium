@@ -39,27 +39,27 @@ jobs:
 
       - name: Install Browser
         run: |
-          if [ "${{ github.event.inputs.Browser }}" == "chrome" ]; then
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
+          if [ "${{ github.event.inputs.Browser }}" == "chrome" ] || [ -z "${{ github.event.inputs.Browser }}" ]; then
+              sudo apt-get update
+              sudo apt-get install -y google-chrome-stable
           elif [ "${{ github.event.inputs.Browser }}" == "firefox" ]; then
-            sudo apt-get update
-            sudo apt-get install -y firefox
+              sudo apt-get update
+              sudo apt-get install -y firefox
           elif [ "${{ github.event.inputs.Browser }}" == "edge" ]; then
-            sudo apt-get update
-            wget https://packages.microsoft.com/keys/microsoft.asc -O microsoft.asc
-            sudo apt-key add microsoft.asc
-            sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main"
-            sudo apt-get update
-            sudo apt-get install -y microsoft-edge-stable
+              sudo apt-get update
+              wget https://packages.microsoft.com/keys/microsoft.asc -O microsoft.asc
+              sudo apt-key add microsoft.asc
+              sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge/ stable main"
+              sudo apt-get update
+              sudo apt-get install -y microsoft-edge-stable
           else
-            echo "Unsupported browser: ${{ github.event.inputs.Browser }}"
-            exit 1
+              echo "Unsupported browser: ${{ github.event.inputs.Browser }}"
+              exit 1
           fi
 
       - name: Run tests
         env:
-          Run: ${{ github.event.inputs.Run || 'false' }}
+          Run: ${{ github.event.inputs.Run || 'true' }}
           Browser: ${{ github.event.inputs.Browser || 'chrome' }}
           Env: ${{ github.event.inputs.Env || 'sandbox' }}
         run: |
