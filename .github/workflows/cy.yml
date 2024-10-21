@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: ${{ github.event.inputs.Browser == 'firefox' && 'selenium/standalone-firefox' || github.event.inputs.Browser == 'edge' && 'selenium/standalone-edgedriver' || 'selenium/standalone-chrome' }}
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size 2g
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.6'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        env:
+          Run: ${{ github.event.inputs.Run || 'false' }}
+          Browser: ${{ github.event.inputs.Browser || 'chrome' }}
+          Env: ${{ github.event.inputs.Env || 'sandbox' }}
+        run: |
+          pytest
