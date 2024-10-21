@@ -5,6 +5,19 @@ on:
     branches:
       - master
   workflow_dispatch:
+    inputs:
+      Run:
+        description: "Run mode (true for headless, false for normal)"
+        required: false
+        default: "false"
+      Browser:
+        description: "Browser to use for testing"
+        required: false
+        default: "chrome"
+      Env:
+        description: "Environment for testing"
+        required: false
+        default: "sandbox"
 
 jobs:
   test:
